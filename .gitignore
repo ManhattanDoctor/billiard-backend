@@ -1,0 +1,23 @@
+# compiled output
+**/build
+
+# dependencies
+/node_modules
+node_modules/
+.werf_secret_key
+
+# IDE - VSCode
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# System Files
+.DS_Store
+Thumbs.db
+
+/pg_data
+
+# env
+src/**/.env

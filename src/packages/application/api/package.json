@@ -1,0 +1,28 @@
+{
+    "name": "@billiard/backend-api",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": "Renat Gubaev",
+    "scripts": {
+        "start": "ts-node --transpile-only main.ts",
+        "start:dev": "ts-node-dev --preserve-symlinks --transpile-only --ignore-watch node_modules main.ts",
+        "build": "tsc",
+        "typeorm": "typeorm-ts-node-esm",
+        "migration:run": "npm run typeorm migration:run -- -d ormconfig.migration.ts",
+        "schema:drop": "npm run typeorm schema:drop -- -d ormconfig.migration.ts",
+        "seed:run": "npm run typeorm migration:run -- -d ormconfig.seed.ts",
+        "reset": "npm run typeorm && npm run migration:run && npm run seed:run"
+    },
+    "dependencies": {
+        "compression": "^1.7.4",
+        "helmet": "^5.1.1",
+        "nocache": "^3.0.4",
+        "pg": "^8.7.1"
+    },
+    "devDependencies": {
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^1.1.8",
+        "tsconfig-paths": "^3.12.0",
+        "typescript": "^4.5.5"
+    }
+}

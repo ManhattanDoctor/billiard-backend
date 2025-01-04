@@ -1,0 +1,36 @@
+{
+    "name": "@billiard/backend",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": "Renat Gubaev",
+    "scripts": {
+        "start": "npm run start --prefix src/packages/application/api",
+        "build": "npm run build --prefix src/packages/application/api",
+        "reset": "npm run reset --prefix src/packages/application/api",
+        "api:docker:image:build": "docker build -t billiard-api -f ./docker/api/Dockerfile .",
+        "api:docker:image:update": "docker pull billiard-api",
+        "api:docker:image:remove": "docker rmi -f billiard-api",
+        "api:docker:container:run": "docker-compose up -d billiard-api",
+        "api:docker:container:start": "docker start billiard-api",
+        "api:docker:container:stop": "docker stop billiard-api",
+        "api:docker:container:remove": "docker rm billiard-api",
+        "submodules:update": "git submodule update --init"
+    },
+    "dependencies": {
+        "@nestjs/platform-express": "^10.2.8",
+        "@nestjs/swagger": "^7.1.16",
+        "@nestjs/throttler": "^5.0.1",
+        "@nestjs/typeorm": "^10.0.1",
+        "@nestjs/jwt": "^10.2.0",
+        "@nestjs/passport": "^10.0.2",
+        "@nestjs/schedule": "^4.0.0",
+        "@project/common": "file:./src/externals/common",
+        "@project/module": "file:./src/packages/module",
+        "@ts-core/backend": "~3.0.19",
+        "@ts-core/backend-nestjs": "~10.0.1",
+        "@ts-core/backend-nestjs-language": "~10.0.2",
+        "passport": "^0.5.2",
+        "passport-jwt": "^4.0.0",
+        "cache-manager": "~5.2.4"
+    }
+}

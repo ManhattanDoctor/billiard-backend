@@ -1,0 +1,3 @@
+[submodule "src/externals/common"]
+	path = src/externals/common
+	url = https://github.com/ManhattanDoctor/billiard-common.git
