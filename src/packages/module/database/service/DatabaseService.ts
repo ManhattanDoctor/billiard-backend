@@ -2,15 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { Logger, LoggerWrapper } from '@ts-core/common';
 import { SelectQueryBuilder } from 'typeorm';
 import { UserEntity } from '../user';
-import { UserTokenEntity } from '../user';
-import { TarotSpreadEntity, TarotSpreadMeaningAiEntity, TarotSpreadMeaningEntity } from '../tarot';
 import { CommentEntity } from '@project/module/database/comment';
-import { CommentTargetType } from '@project/common/comment';
-import { TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadType } from '@project/common/tarot';
 import { CoinAccounts, CoinId } from '@project/common/coin';
 import { PaymentTransactionEntity } from '../payment';
 import { PaymentAccountId } from '@project/common/payment';
-import { User, UserAccountType, UserResource } from '@project/common/user';
+import { User, UserAccountType } from '@project/common/user';
 import { UserNotFoundError } from '@project/module/core/middleware';
 import * as _ from 'lodash';
 
@@ -65,49 +61,6 @@ export class DatabaseService extends LoggerWrapper {
         return query;
     }
 
-    public async userTokenHas(token: string): Promise<boolean> {
-        return !_.isNil(token) ? await UserTokenEntity.countBy({ token }) > 0 : false;
-    }
-
-    public async userTokenRemove(token: string): Promise<void> {
-        if (!_.isNil(token)) {
-            await UserTokenEntity.delete({ token });
-        }
-    }
-
-    public async usersGetByLogin(logins: Array<string>, resource: UserResource): Promise<Array<number>> {
-        let query = await UserEntity.createQueryBuilder('user');
-        query.leftJoinAndSelect('user.account', 'userAccount');
-        let items = await query
-            .where('user.login IN (:...logins)', { logins })
-            .andWhere('user.resource = :resource', { resource })
-            .andWhere('userAccount.type IN (:...types)', { types: [UserAccountType.FREE, UserAccountType.DONATER] })
-            .getMany();
-        return items.map(item => item.id);
-    }
-
-    public async userTokensRemove(user: UserEntity): Promise<void> {
-        if (_.isNil(user)) {
-            return;
-        }
-        await UserTokenEntity.createQueryBuilder('token')
-            .delete()
-            .where('userId = :userId', { userId: user.id })
-            .andWhere('expired < :date', { date: new Date() })
-            .execute();
-    }
-
-    public async userTokensRemoveExcept(user: UserEntity, token: string): Promise<void> {
-        if (_.isNil(user)) {
-            return;
-        }
-        await UserTokenEntity.createQueryBuilder('token')
-            .delete()
-            .where('userId = :userId', { userId: user.id })
-            .andWhere('token != :token', { token })
-            .execute();
-    }
-
     public async userAdministratorGet(): Promise<UserEntity> {
         let query = this.getUserQuery(null);
         this.userRelationsAdd(query);
@@ -117,18 +70,6 @@ export class DatabaseService extends LoggerWrapper {
             throw new UserNotFoundError();
         }
         return item;
-    }
-
-    public async userDonatersGet(resource?: UserResource): Promise<Array<string>> {
-        let query = this.getUserQuery(null);
-        this.userRelationsAdd(query);
-
-        query.where('userAccount.type = :type', { type: UserAccountType.DONATER });
-        if (!_.isNil(resource)) {
-            query.andWhere('user.resource = :resource', { resource });
-        }
-        let items = await query.getMany();
-        return items.map(item => item.login);
     }
 
     public async userAdministratorIdGet(): Promise<number> {
@@ -142,6 +83,7 @@ export class DatabaseService extends LoggerWrapper {
     //
     // --------------------------------------------------------------------------
 
+    /*
     public async tarotSpreadGet(idOrUid: string | number, isNeedRelations: boolean): Promise<TarotSpreadEntity> {
         let query = TarotSpreadEntity.createQueryBuilder('tarotSpread');
         if (_.isString(idOrUid)) {
@@ -166,122 +108,7 @@ export class DatabaseService extends LoggerWrapper {
 
         return query.getOne();
     }
-
-    public async tarotSpreadShowcaseGet(showcase: string): Promise<TarotSpreadEntity> {
-        let query = TarotSpreadEntity.createQueryBuilder('tarotSpread');
-        query.where('tarotSpread.showcase = :showcase', { showcase });
-        this.tarotSpreadRelationsAdd(query);
-
-        query.leftJoinAndSelect('tarotSpread.meaning', 'tarotSpreadMeaning');
-        this.tarotSpreadMeaningRelationsAdd(query);
-        return query.getOne();
-    }
-
-    public tarotSpreadsCount(userId: number): Promise<number> {
-        return TarotSpreadEntity
-            .createQueryBuilder('tarotSpread')
-            .where('tarotSpread.userId = :userId', { userId })
-            .andWhere(`tarotSpread.status IS NULL`)
-            .andWhere('tarotSpread.type != :type', { type: TarotSpreadType.DAY })
-            .getCount();
-    }
-
-    public tarotSpreadsPublicCount(userId: number): Promise<number> {
-        return TarotSpreadEntity
-            .createQueryBuilder('tarotSpread')
-            .where('tarotSpread.userId = :userId', { userId })
-            .andWhere(`tarotSpread.status IS NULL`)
-            .andWhere('tarotSpread.type != :type', { type: TarotSpreadType.DAY })
-            .andWhere('tarotSpread.privacy = :privacy', { privacy: TarotSpreadPrivacy.PUBLIC })
-            .getCount();
-    }
-
-    public async tarotSpreadsMeaningCount(userId: number): Promise<number> {
-        return TarotSpreadMeaningEntity
-            .createQueryBuilder('tarotSpreadMeaning')
-            .leftJoinAndSelect('tarotSpreadMeaning.spread', 'tarotSpread')
-            // .where('tarotSpread.userId = :userId AND tarotSpread.status IS NULL', { userId })
-            .where('tarotSpread.userId = :userId', { userId })
-            .andWhere('tarotSpreadMeaning.status IN (:...statuses)', { statuses: [TarotSpreadMeaningStatus.APPROVED, TarotSpreadMeaningStatus.RATED] })
-            .getCount();
-    }
-
-    public async tarotSpreadsMeaningInProgressCount(userId: number): Promise<number> {
-        let statuses = [TarotSpreadMeaningStatus.PENDING, TarotSpreadMeaningStatus.AWAITING_MEAN, TarotSpreadMeaningStatus.IN_PROGRESS, TarotSpreadMeaningStatus.AWAITING_APPROVE, TarotSpreadMeaningStatus.PREPARED];
-        return await TarotSpreadMeaningEntity
-            .createQueryBuilder('tarotSpreadMeaning')
-            .leftJoinAndSelect('tarotSpreadMeaning.spread', 'tarotSpread')
-            .where('tarotSpread.userId = :userId AND tarotSpread.status IS NULL', { userId })
-            .andWhere('tarotSpreadMeaning.status IN (:...statuses)', { statuses })
-            .getCount();
-    }
-
-    public async tarotSpreadsMeaningApprovedCount(userId: number): Promise<number> {
-        return TarotSpreadMeaningEntity
-            .createQueryBuilder('tarotSpreadMeaning')
-            .leftJoinAndSelect('tarotSpreadMeaning.spread', 'tarotSpread')
-            .where('tarotSpread.userId = :userId AND tarotSpread.status IS NULL', { userId })
-            .andWhere('tarotSpreadMeaning.status IN (:...statuses)', { statuses: [TarotSpreadMeaningStatus.APPROVED] })
-            .getCount();
-    }
-
-    public tarotSpreadRelationsAdd<T = any>(query: SelectQueryBuilder<T>): void {
-        query.leftJoinAndSelect('tarotSpread.user', 'tarotSpreadUser')
-        query.leftJoinAndSelect('tarotSpreadUser.account', 'tarotSpreadUserAccount');
-        query.leftJoinAndSelect('tarotSpreadUser.statistics', 'tarotSpreadUserStatistics');
-        query.leftJoinAndSelect('tarotSpreadUser.preferences', 'tarotSpreadUserPreferences');
-    }
-
-    public tarotSpreadMeaningRelationsAdd<T = any>(query: SelectQueryBuilder<T>): void {
-        query.leftJoinAndSelect('tarotSpreadMeaning.user', 'tarotSpreadMeaningUser')
-        query.leftJoinAndSelect('tarotSpreadMeaningUser.master', 'tarotSpreadMeaningUserMaster');
-        query.leftJoinAndSelect('tarotSpreadMeaningUser.account', 'tarotSpreadMeaningUserAccount');
-        query.leftJoinAndSelect('tarotSpreadMeaningUser.preferences', 'tarotSpreadMeaningUserPreferences');
-    }
-
-    public tarotSpreadMeaningAiRelationsAdd<T = any>(query: SelectQueryBuilder<T>): void { }
-
-    public async tarotSpreadMeaningGet(id: number, isNeedRelations: boolean): Promise<TarotSpreadMeaningEntity> {
-        let query = TarotSpreadMeaningEntity.createQueryBuilder('tarotSpreadMeaning')
-            .where('tarotSpreadMeaning.id = :id', { id });
-
-        if (isNeedRelations) {
-            this.tarotSpreadMeaningRelationsAdd(query);
-            query.leftJoinAndSelect('tarotSpreadMeaning.spread', 'tarotSpread');
-            this.tarotSpreadRelationsAdd(query);
-        }
-        return query.getOne();
-    }
-
-    public async tarotSpreadsMeaningRatingCount(userId: number): Promise<number> {
-        let { tarotSpreadsMeaningRating } = await TarotSpreadMeaningEntity
-            .createQueryBuilder('tarotSpreadMeaning')
-            .where('tarotSpreadMeaning.userId = :userId', { userId })
-            .andWhere('tarotSpreadMeaning.status = :status', { status: TarotSpreadMeaningStatus.RATED })
-            .select('AVG(tarotSpreadMeaning.rating)', 'tarotSpreadsMeaningRating')
-            .getRawOne();
-        return Number(tarotSpreadsMeaningRating);
-    }
-
-    public async tarotSpreadMeaningInProgressCount(): Promise<number> {
-        let query = TarotSpreadMeaningEntity.createQueryBuilder('tarotSpreadMeaning')
-        query.leftJoinAndSelect('tarotSpreadMeaning.spread', 'tarotSpread');
-        query.where('tarotSpreadMeaning.status = :status', { status: TarotSpreadMeaningStatus.IN_PROGRESS })
-        query.andWhere(`tarotSpread.status IS NULL`);
-        return query.getCount();
-    }
-
-    public async tarotSpreadMeaningAiGet(id: number, isNeedRelations: boolean): Promise<TarotSpreadMeaningAiEntity> {
-        let query = TarotSpreadMeaningAiEntity.createQueryBuilder('tarotSpreadMeaningAi')
-            .where('tarotSpreadMeaningAi.id = :id', { id });
-
-        if (isNeedRelations) {
-            this.tarotSpreadMeaningAiRelationsAdd(query);
-            query.leftJoinAndSelect('tarotSpreadMeaningAi.spread', 'tarotSpread');
-            this.tarotSpreadRelationsAdd(query);
-        }
-        return query.getOne();
-    }
+    */
 
     // --------------------------------------------------------------------------
     //

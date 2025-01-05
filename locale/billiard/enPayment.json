@@ -1,0 +1,30 @@
+{
+    "payment": {
+        "payment": "Payment",
+        "payments": "Payments",
+        "user": "Payments",
+        "createdDate": "Date",
+        "aggregator": "Aggregator",
+        "details": "Details",
+        "transaction": {
+            "transaction": "Transaction",
+            "transactions": "Transactions",
+            "activatedDate": "Activated date",
+            "createdDate": "Created date",
+            "debet": "Debit",
+            "credit": "Credit",
+            "amount": "Amount",
+            "description": "Description",
+            "type": {
+                "type": "Type",
+                "REFUND": "Refund",
+                "CORRECTION": "Balance correction",
+                "PURCHASE": "Purchase",
+                "TASK_PURCHASE": "AI task purchase",
+                "TOOL_PURCHASE": "AI tool usage",
+                "AGENT_PURCHASE": "AI agent purchase",
+                "REGISTRATION_BONUS": "Registration Bonus"
+            }
+        }
+    }
+}

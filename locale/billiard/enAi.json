@@ -1,0 +1,202 @@
+{
+    "ai": {
+        "task": {
+            "task": "Task",
+            "result": "Result",
+            "options": "Options",
+            "exitConfirmation": "Are you sure you want to leave the page?",
+            "action": "Start Task",
+            "reload": "Restart",
+            "image": {
+                "add": "Create Image",
+                "image": "Image",
+                "prompt": "What should be in the image"
+            },
+            "text": {
+                "add": "Write Text",
+                "text": "Text",
+                "message": "What would you like me to do?",
+                "messageDescription": "For example, write a short story no more than 500 words, in which good triumphs over evil.",
+                "system": "What is the context of the task?",
+                "systemDescription": "For example, you are an experienced writer, use clear and concise language in the style of Anton Pavlovich Chekhov."
+            },
+            "tts": {
+                "add": "Recite Text",
+                "tts": "Text Recitation",
+                "text": "Text"
+            },
+            "stt": {
+                "add": "Get Text",
+                "stt": "Get Text",
+                "text": "Text"
+            },
+            "conversation": {
+                "add": "Add Conversation"
+            }
+        },
+        "tool": {
+            "tool": "Tool",
+            "tools": "Tools",
+            "SERP": "Serp Search",
+            "BING": "Microsoft Bing",
+            "AMAZON": "Amazon Store",
+            "TAVILY": "Tavily Search",
+            "GOOGLE": "Google Search",
+            "SERPER": "Serper Search",
+            "YOU_TUBE": "YouTube Search",
+            "WIKIPEDIA": "Wikipedia",
+            "GOOGLE_NEWS": "Google News",
+            "WOLFRAM_ALPHA": "Wolfram Alpha",
+            "CONTENT_SUMMARIZATION": "Content Summarization",
+            "IMAGE_RECOGNITION": "Image Recognition",
+            "IMAGE_DRAWING_DALLE_2": "Image Drawing (Dalle 2)",
+            "IMAGE_DRAWING_DALLE_3": "Image Drawing (Dalle 3)"
+        },
+        "model": {
+            "model": "Model",
+            "OPEN_AI_TEXT": {
+                "OPEN_AI_TEXT": "OpenAi",
+                "options": {
+                    "model": {
+                        "gpt-3-5-turbo": "GPT 3.5 Turbo",
+                        "gpt-4": "GPT 4",
+                        "gpt-4o": "GPT 4 Omni",
+                        "gpt-4o-mini": "GPT 4 Omni Mini",
+                        "gpt-4-32k": "GPT 4 32K",
+                        "gpt-4-turbo": "GPT 4 Turbo",
+                        "gpt-4-preview": "GPT 4 Preview",
+                        "gpt-4-turbo-preview": "GPT 4 Turbo Preview",
+                        "gpt-4-vision-preview": "GPT 4 (Image Analysis)"
+                    },
+                    "maxTokens": "Max Tokens",
+                    "maxTokensDescription": "The maximum number of tokens you are willing to spend on execution (1 token ≈ 2 Russian characters)",
+                    "temperature": "Creativity",
+                    "temperatureDescription": "Used to control the randomness and creative aspect of the generated text. High value results in more diverse and creative outcomes, while low value produces more focused and deterministic responses.",
+                    "presencePenalty": "Phrase Repetition",
+                    "presencePenaltyDescription": "Affects the likelihood of the model repeating words or phrases in its response. High value of this parameter reduces the probability of repetitions, while low value allows for more repetitions.",
+                    "frequencyPenalty": "Word Frequency",
+                    "frequencyPenaltyDescription": "Controls the model’s preference for using more common words or phrases. High value of this parameter encourages the use of less common words, while low value prefers more common words."
+                }
+            },
+            "OPEN_AI_CONVERSATION": {
+                "OPEN_AI_CONVERSATION": "⇛ai.model.OPEN_AI_TEXT.OPEN_AI_TEXT"
+            },
+            "ANTHROPIC_TEXT": {
+                "ANTHROPIC_TEXT": "Anthropic",
+                "options": {
+                    "model": {
+                        "claude-3-5-sonnet-20240620": "Claude 3.5 Sonnet"
+                    },
+                    "maxTokens": "Max Tokens",
+                    "maxTokensDescription": "The maximum number of tokens you are willing to spend on execution (1 token ≈ 2 Russian characters)",
+                    "temperature": "Creativity",
+                    "temperatureDescription": "Used to control the randomness and creative aspect of the generated text. High value results in more diverse and creative outcomes, while low value produces more focused and deterministic responses."
+                }
+            },
+            "ANTHROPIC_CONVERSATION": {
+                "ANTHROPIC_CONVERSATION": "⇛ai.model.ANTHROPIC_TEXT.ANTHROPIC_TEXT"
+            },
+            "STABLE_IMAGE": {
+                "STABLE_IMAGE": "Stable Diffusion",
+                "options": {
+                    "seed": "Seed",
+                    "model": "Model",
+                    "size": "Size",
+                    "style": "Style",
+                    "width": "Width",
+                    "height": "Height",
+                    "quality": "Quality",
+                    "outputs": "Number of Images",
+                    "controlNet": "Control Image",
+                    "guidanceScale": "Temperature",
+                    "inferenceSteps": "Steps",
+                    "negativePrompt": "What should not be in the image",
+                    "isUsedRandomSeed": "Random Seed"
+                }
+            },
+            "OPEN_AI_IMAGE_DALLE_2": {
+                "OPEN_AI_IMAGE_DALLE_2": "OpenAi Dalle 2",
+                "options": {
+                    "n": "⇛ai.model.STABLE_IMAGE.options.outputs",
+                    "size": "⇛ai.model.STABLE_IMAGE.options.size"
+                }
+            },
+            "OPEN_AI_IMAGE_DALLE_3": {
+                "OPEN_AI_IMAGE_DALLE_3": "OpenAi Dalle 3",
+                "options": {
+                    "size": "⇛ai.model.STABLE_IMAGE.options.size",
+                    "style": {
+                        "style": "⇛ai.model.STABLE_IMAGE.options.style",
+                        "vivid": "Hyperrealism",
+                        "natural": "Natural"
+                    },
+                    "quality": {
+                        "quality": "⇛ai.model.STABLE_IMAGE.options.quality",
+                        "hd": "High",
+                        "standard": "Standard"
+                    }
+                }
+            },
+            "OPEN_AI_TTS": {
+                "OPEN_AI_TTS": "OpenAi",
+                "options": {
+                    "model": {
+                        "tts-1": "TTS-1",
+                        "tts-1-hd": "TTS-1 (High Quality)"
+                    },
+                    "voice": {
+                        "voice": "Voice",
+                        "echo": "Echo (Male)",
+                        "onyx": "Onyx (Male)",
+                        "nova": "Nova (Female)",
+                        "alloy": "Alloy (Male)",
+                        "fable": "Fable (Male)",
+                        "shimmer": "Shimmer (Female)"
+                    },
+                    "speed": "Speed",
+                    "speedDescription": "The higher the value, the faster the text will be recited",
+                    "format": "Format"
+                }
+            },
+            "OPEN_AI_STT": {
+                "OPEN_AI_STT": "OpenAi",
+                "options": {
+                    "model": {
+                        "whisper-1": "Whisper 1"
+                    },
+                    "prompt": "Prompt",
+                    "promptDescription": "You can use prompts to improve the quality of the transcription generated by the Whisper API. The model will try to match the style of the prompt, so it is more likely to use capital letters and punctuation if it is done in the prompt.",
+                    "language": "Language",
+                    "languageDescription": "The language of the file. Specifying the language in ISO-639-1 format will increase accuracy and reduce latency.",
+                    "temperature": "Temperature",
+                    "temperatureDescription": "Sampling temperature in the range from 0 to 1. Higher values such as 0.8 will make the output more random, while lower values such as 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically adjust the temperature until certain thresholds are met."
+                }
+            },
+            "GIGA_CHAT_TEXT": {
+                "GIGA_CHAT_TEXT": "GigaChat (Sberbank)",
+                "options": {
+                    "model": {
+                        "GigaChat-Pro": "GigaChat Pro",
+                        "GigaChat": "GigaChat Lite"
+                    },
+                    "maxTokens": "⇛ai.model.OPEN_AI_TEXT.OPEN_AI_TEXT.options.maxTokens",
+                    "maxTokensDescription": "",
+                    "temperature": "",
+                    "temperatureDescription": ""
+                }
+            },
+            "GIGA_CHAT_CONVERSATION": {
+                "GIGA_CHAT_CONVERSATION": "⇛ai.model.GIGA_CHAT_TEXT.GIGA_CHAT_TEXT"
+            },
+            "GIGA_CHAT_IMAGE": {
+                "GIGA_CHAT_IMAGE": "Kandinsky (Sberbank)"
+            }
+        }
+    },
+    "error": {
+        "AI_TASK_ABORTED": "Task Aborted",
+        "AI_TASK_NOT_FOUND": "Task Not Found",
+        "AI_TASK_FORBIDDEN": "Task Forbidden",
+        "AI_MODEL_NOT_FOUND": "Model Not Found"
+    }
+}

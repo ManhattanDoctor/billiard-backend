@@ -1,0 +1,21 @@
+{
+    "management": {
+        "management": "Management",
+        "file": {
+            "title": "All files",
+            "vector": {
+                "search": {
+                    "query": "Query",
+                    "search": "Vector search",
+                    "result": "Result"
+                }
+            }
+        },
+        "user": {
+            "title": "All users"
+        },
+        "conversation": {
+            "title": "All conversations"
+        }
+    }
+}

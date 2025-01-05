@@ -1,0 +1,21 @@
+{
+    "management": {
+        "management": "Управление",
+        "file": {
+            "title": "Все файлы",
+            "vector": {
+                "search": {
+                    "query": "Запрос",
+                    "search": "Векторный поиск",
+                    "result": "Найдено {chunks}"
+                }
+            }
+        },
+        "user": {
+            "title": "Все пользователи"
+        },
+        "conversation": {
+            "title": "Все беседы"
+        }
+    }
+}

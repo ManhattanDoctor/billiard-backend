@@ -1,0 +1,78 @@
+{
+    "openAi": {
+        "file": {
+            "add": {
+                "add": "Добавить в OpenAi",
+                "confirmation": "Вы уверены что хотите добавить файл в OpenAi?",
+                "notification": "Файл успешно загружен в OpenAi"
+            },
+            "remove": {
+                "remove": "Удалить из OpenAi",
+                "confirmation": "Вы уверены что хотите удалить файл из OpenAi?",
+                "notification": "Файл успешно удален из OpenAi"
+            }
+        },
+        "agent": {
+            "agent": "Агент",
+            "agents": "Агенты",
+            "name": "Имя агента",
+            "nameDescription": "Например, Юрист - Владимир или Технолог - Валентин",
+            "createdDate": "Дата",
+            "user": "Пользователь",
+            "opponent": "AI",
+            "error": "Произошла ошибка",
+            "completed": {
+                "confirmation": "Агент выполнил поставленную задачу, вы хотите посмотреть результат?"
+            },
+            "requiresAction": {
+                "notification": "Действие агента требует ручного вмешательства{message, select, null{} undefined{} other{<br/><br/>{message}}}"
+            },
+            "add": {
+                "add": "Добавить агента",
+                "confirmation": "Вы уверены что хотите добавить агента?"
+            },
+            "check": {
+                "check": "Перезапустить",
+                "confirmation": "Вы уверены что хотите перезапустить операцию?"
+            },
+            "export": {
+                "export": "Экспортировать",
+                "confirmation": "Вы уверены что хотите экспортировать сообщения?",
+                "notification": "Сообщения скопированы в буфер обмена"
+            },
+            "clear": {
+                "clear": "Очистить",
+                "confirmation": "Вы уверены что хотите удалить все сообщения?"
+            },
+            "cancel": {
+                "cancel": "Отменить",
+                "confirmation": "Вы уверены что хотите отменить выполнение?"
+            },
+            "message": {
+                "message": "Сообщение",
+                "noDataFound": "У вас пока нет сообщений"
+            },
+            "system": "Инструкции",
+            "systemDescription": "Качества и особенности вашего собеседника, например: \"Ты юрист по международному праву, отвечай только исходя из информации в предоставленных тебе файлах.\"",
+            "tool": {
+                "tool": "Инструмент",
+                "tools": "Инструменты",
+                "retrieval": "Анализ документов",
+                "code_interpreter": "Интерпретатор кода"
+            },
+            "status": {
+                "TEXT": "Формирую текстовое сообщение",
+                "FUNCTION": "Вызываю функцию",
+                "RETRIEVAL": "Анализирую данные",
+                "IMAGE_FILE": "Создаю изображение",
+                "CODE_INTERPRETER": "Пишу код"
+            }
+        }
+    },
+    "error": {
+        "openAiAgentIdNotFound": "Отсутствует уникальный номер агента",
+        "OPEN_AI_AGENT_ERRORED": "Произошла ошибка при выполнении задачи агентом{message, select, null{} undefined{} other{<br/><br/>{message}}}",
+        "OPEN_AI_AGENT_EXPIRED": "Истекло время ожидания действия агента{message, select, null{} undefined{} other{<br/><br/>{message}}}",
+        "OPEN_AI_AGENT_CANCELED": "Действие агента отменено{message, select, null{} undefined{} other{<br/><br/>{message}}}"
+    }
+}

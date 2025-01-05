@@ -73,6 +73,21 @@ export class UserNotFoundError extends CoreExtendedError {
         super(ErrorCode.USER_NOT_FOUND);
     }
 }
+export class UserForbiddenError extends CoreExtendedError {
+    constructor() {
+        super(ErrorCode.USER_FORBIDDEN);
+    }
+}
+export class UserTokenInvalidError extends CoreExtendedError<string> {
+    constructor(details: string) {
+        super(ErrorCode.USER_TOKEN_INVALID, details, ExtendedError.HTTP_CODE_UNAUTHORIZED);
+    }
+}
+export class UserTokenExpiredError extends CoreExtendedError<IInvalidDto<number>> {
+    constructor(value: number, expected: number) {
+        super(ErrorCode.USER_TOKEN_EXPIRED, { name: 'token', value, expected }, ExtendedError.HTTP_CODE_UNAUTHORIZED);
+    }
+}
 export class UserStatusInvalidError extends CoreExtendedError<IInvalidDto<UserStatus>> {
     constructor(details: IInvalidDto<UserStatus>) {
         super(ErrorCode.USER_STATUS_INVALID, details, ExtendedError.HTTP_CODE_UNAUTHORIZED);

@@ -22,7 +22,7 @@ export class LogoutController extends DefaultController<void, void> {
     //
     // --------------------------------------------------------------------------
 
-    constructor(logger: Logger, private database: DatabaseService) {
+    constructor(logger: Logger) {
         super(logger);
     }
 
@@ -40,6 +40,5 @@ export class LogoutController extends DefaultController<void, void> {
         if (_.isNil(request.user)) {
             return;
         }
-        return this.database.userTokenRemove(UserGuard.getUserToken(request));
     }
 }

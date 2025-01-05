@@ -1,0 +1,29 @@
+{
+    "general": {
+        "yes": "Yes",
+        "not": "No",
+        "close": "Close",
+        "locale": "Language",
+        "refresh": "Refresh",
+        "noDataFound": "No data"
+    },
+    "paginator": {
+        "firstPage": "To the first page",
+        "itemsPerPage": "Items per page",
+        "lastPage": "To the last page",
+        "nextPage": "Next page",
+        "pageRange": "{current} of {total}",
+        "previousPage": "Previous page"
+    },
+    "error": {
+        "form": {
+            "max": "Maximum number {max}",
+            "min": "Minimum number {min}",
+            "required": "Required",
+            "email": "Invalid email format",
+            "pattern": "Condition not met {requiredPattern}",
+            "minlength": "Minimum length {requiredLength,plural,one {# character} few {# characters} many {# characters} other {# characters}}",
+            "maxlength": "Maximum length {maxlength,plural,one {# character} few {# characters} many {# characters} other {# characters}}"
+        }
+    }
+}

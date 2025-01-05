@@ -1,20 +1,14 @@
 import { PassportModule } from '@nestjs/passport';
 import { TransportModule } from '@ts-core/backend-nestjs';
-import { DatabaseModule } from '../database';
+import { DatabaseModule } from '@project/module/database';
 import { JwtModule } from '@nestjs/jwt';
 import { LoginService } from './service';
 import { DynamicModule } from '@nestjs/common';
-import { JwtStrategy } from './strategy/JwtStrategy';
 import { Logger } from '@ts-core/common';
-import { IGoStrategySettings, IJwtStrategySettings, VkStrategyInternal, IVkStrategySettings, VkStrategy, YaStrategy, IYaStrategySettings, MaStrategy, IMaStrategySettings, IVkStrategyInternalSettings, ITgStrategySettings, TgStrategy, TgStrategyInternal } from './strategy';
-import { LoginController } from './controller/LoginController';
-import { InitController } from './controller/InitController';
+import { JwtStrategy, IGoStrategySettings, GoStrategy, IJwtStrategySettings, VkStrategyInternal, IVkStrategySettings, VkStrategy, YaStrategy, IYaStrategySettings, MaStrategy, IMaStrategySettings, IVkStrategyInternalSettings, ITgStrategySettings, TgStrategy, TgStrategyInternal } from './strategy';
 import { GuardModule } from '@project/module/guard';
-import { LogoutController } from './controller/LogoutController';
-import { LogoutOthersController } from './controller/LogoutOthersController';
+import { InitController, LoginController, LogoutController } from './controller';
 import { SharedModule } from '@project/module/shared';
-import { GoStrategy } from './strategy';
-import { CoinModule } from '@project/module/coin';
 
 export class LoginModule {
     // --------------------------------------------------------------------------
@@ -31,7 +25,6 @@ export class LoginModule {
                 GuardModule,
                 SharedModule,
 
-                CoinModule,
                 DatabaseModule,
                 TransportModule,
                 JwtModule.register({ secret: settings.jwtSecret, signOptions: { expiresIn: settings.jwtExpiresTimeout } }),
@@ -80,8 +73,8 @@ export class LoginModule {
                 },
                 LoginService
             ],
-            controllers: [LoginController, LogoutController, LogoutOthersController, InitController],
-            exports: [VkStrategyInternal]
+            controllers: [LoginController, LogoutController, InitController],
+            exports: [LoginService, VkStrategyInternal]
         };
     }
 }

@@ -1,0 +1,225 @@
+{
+    "ai": {
+        "task": {
+            "task": "Задача",
+            "result": "Результат",
+            "options": "Настройки",
+            "exitConfirmation": "Вы уверены что хотите покинуть страницу?",
+            "action": "Начать работу",
+            "reload": "Перезапустить",
+            "image": {
+                "add": "Создать изображение",
+                "image": "Изображение",
+                "prompt": "Что должно быть на изображении"
+            },
+            "text": {
+                "add": "Написать текст",
+                "text": "Текст",
+                "message": "Что вы хотите что бы я сделал?",
+                "messageDescription": "Например, напиши короткий рассказ не более 500 слов, в котором добро побеждает зло.",
+                "system": "Какой контекст задачи?",
+                "systemDescription": "Например, ты опытный писатель, используй ясный и лаконичный язык в стиле Антона Павловича Чехова."
+            },
+            "tts": {
+                "add": "Озвучить текст",
+                "tts": "Озвучка текста",
+                "text": "Текст"
+            },
+            "stt": {
+                "add": "Получить текст",
+                "stt": "Получение текста",
+                "text": "Текст"
+            },
+            "conversation": {
+                "add": "Добавить беседу"
+            }
+        },
+        "tool": {
+            "tool": "Инструмент",
+            "tools": "Инструменты",
+            "SERP": "Serp Search",
+            "BING": "Microsoft Bing",
+            "AMAZON": "Amazon Store",
+            "TAVILY": "Tavily Search",
+            "GOOGLE": "Google Search",
+            "SERPER": "Serper Search",
+            "YOU_TUBE": "Youtube Search",
+            "WIKIPEDIA": "Wikipedia",
+            "GOOGLE_NEWS": "Google News",
+            "WOLFRAM_ALPHA": "Wolfram Alpha",
+            "CONTENT_SUMMARIZATION": "Обобщение текста",
+            "IMAGE_RECOGNITION": "Распознавание изображений",
+            "IMAGE_DRAWING_DALLE_2": "Рисование изображений (Dalle 2)",
+            "IMAGE_DRAWING_DALLE_3": "Рисование изображений (Dalle 3)"
+        },
+        "model": {
+            "model": "Модель",
+            "OPEN_AI_TEXT": {
+                "OPEN_AI_TEXT": "OpenAi",
+                "options": {
+                    "model": {
+                        "o1-mini": "GPT-O1 Min",
+                        "o1-preview": "GPT-O1 Preview",
+                        "gpt-3-5-turbo": "GPT 3.5 Turbo",
+                        "gpt-4": "GPT 4",
+                        "gpt-4o": "GPT 4 Omni",
+                        "gpt-4o-mini": "GPT 4 Omni Mini",
+                        "gpt-4-32k": "GPT 4 32K",
+                        "gpt-4-turbo": "GPT 4 Turbo",
+                        "gpt-4-preview": "GPT 4 Preview",
+                        "gpt-4-turbo-preview": "GPT 4 Turbo Preview",
+                        "gpt-4-vision-preview": "GPT 4 (Анализ изображений)"
+                    },
+                    "maxTokens": "Максимум токенов",
+                    "maxTokensDescription": "Максимальное количество токенов, которое вы готовы затратить за выполнение (1 токен ≈ 2 русских символа)",
+                    "temperature": "Креативность",
+                    "temperatureDescription": "Используется для контроля случайности и творческой составляющей сгенерированного текста. Высокое значение приводит к более разнообразным и креативным результатам, тогда как низкое значение производит более сфокусированные и детерминированные ответы.",
+                    "presencePenalty": "Повторяемость фраз",
+                    "presencePenaltyDescription": "Влияет на вероятность того, что модель повторит слова или фразы в своем ответе. Высокое значение этого параметра уменьшает вероятность повторений, тогда как низкое значение позволяет использовать больше повторений.",
+                    "frequencyPenalty": "Распространенность слов",
+                    "frequencyPenaltyDescription": "Контролирует предпочтение модели использовать более распространенные слова или фразы. Высокое значение этого параметра поощряет использование менее распространенных слов, тогда как низкое значение отдает предпочтение более распространенным словам."
+                }
+            },
+            "OPEN_AI_CONVERSATION": {
+                "OPEN_AI_CONVERSATION": "⇛ai.model.OPEN_AI_TEXT.OPEN_AI_TEXT"
+            },
+            "ANTHROPIC_TEXT": {
+                "ANTHROPIC_TEXT": "Anthropic",
+                "options": {
+                    "model": {
+                        "claude-3-5-sonnet-20240620": "Claude 3.5 Sonnet"
+                    },
+                    "maxTokens": "Максимум токенов",
+                    "maxTokensDescription": "Максимальное количество токенов, которое вы готовы затратить за выполнение (1 токен ≈ 2 русских символа)",
+                    "temperature": "Креативность",
+                    "temperatureDescription": "Используется для контроля случайности и творческой составляющей сгенерированного текста. Высокое значение приводит к более разнообразным и креативным результатам, тогда как низкое значение производит более сфокусированные и детерминированные ответы."
+                }
+            },
+            "ANTHROPIC_CONVERSATION": {
+                "ANTHROPIC_CONVERSATION": "⇛ai.model.ANTHROPIC_TEXT.ANTHROPIC_TEXT"
+            },
+            "STABLE_IMAGE": {
+                "STABLE_IMAGE": "Stable Diffusion",
+                "options": {
+                    "seed": "Зерно",
+                    "model": "Модель",
+                    "size": "Размер",
+                    "style": "Стиль",
+                    "width": "Ширина",
+                    "height": "Высота",
+                    "quality": "Качество",
+                    "outputs": "Количество изображений",
+                    "controlNet": "Контрольное изображение",
+                    "guidanceScale": "Температура",
+                    "inferenceSteps": "Шаги проработки",
+                    "negativePrompt": "Чего не должно быть на изображении",
+                    "isUsedRandomSeed": "Случайное значение"
+                }
+            },
+            "OPEN_AI_IMAGE_DALLE_2": {
+                "OPEN_AI_IMAGE_DALLE_2": "OpenAi Dalle 2",
+                "options": {
+                    "n": "⇛ai.model.STABLE_IMAGE.options.outputs",
+                    "size": "⇛ai.model.STABLE_IMAGE.options.size"
+                }
+            },
+            "OPEN_AI_IMAGE_DALLE_3": {
+                "OPEN_AI_IMAGE_DALLE_3": "OpenAi Dalle 3",
+                "options": {
+                    "size": "⇛ai.model.STABLE_IMAGE.options.size",
+                    "style": {
+                        "style": "⇛ai.model.STABLE_IMAGE.options.style",
+                        "vivid": "Гиперреализм",
+                        "natural": "Естественный"
+                    },
+                    "quality": {
+                        "quality": "⇛ai.model.STABLE_IMAGE.options.quality",
+                        "hd": "Высокое",
+                        "standard": "Стандартное"
+                    }
+                }
+            },
+            "OPEN_AI_TTS": {
+                "OPEN_AI_TTS": "OpenAi",
+                "options": {
+                    "model": {
+                        "tts-1": "TTS-1",
+                        "tts-1-hd": "TTS-1 (Высокое качество)"
+                    },
+                    "voice": {
+                        "voice": "Голос",
+                        "echo": "Эко (мужской)",
+                        "onyx": "Оникс (мужской)",
+                        "nova": "Нова (женский)",
+                        "alloy": "Эллой (мужской)",
+                        "fable": "Файбл (мужской)",
+                        "shimmer": "Шиммер (женский)"
+                    },
+                    "speed": "Скорость",
+                    "speedDescription": "Чем больше значение, тем быстрее будет произноситься текст",
+                    "format": "Формат"
+                }
+            },
+            "SPEECHIFY_TTS": {
+                "SPEECHIFY_TTS": "Speechify",
+                "options": {
+                    "model": {
+                        "simba-base": "Simba Base",
+                        "simba-turbo": "Simba Turbo",
+                        "simba-english": "Simba English",
+                        "simba-multilingual": "Simba Multilingual"
+                    },
+                    "language": {
+                        "language": "Язык",
+                        "fr-FR": "Французский",
+                        "en-US": "Английский",
+                        "es-ES": "Испанский"
+                    },
+                    "voice": "Голос",
+                    "format": "Формат",
+                    "isLoudnessNormalization": "Нормализовать звук"
+                }
+            },
+            "OPEN_AI_STT": {
+                "OPEN_AI_STT": "OpenAi",
+                "options": {
+                    "model": {
+                        "whisper-1": "Whisper 1"
+                    },
+                    "prompt": "Подсказка",
+                    "promptDescription": "Вы можете использовать подсказки, чтобы улучшить качество транскрипции, создаваемой API Whisper. Модель будет пытаться соответствовать стилю подсказки, поэтому она с большей вероятностью будет использовать заглавные буквы и пунктуацию, если это делается в подсказке.",
+                    "language": "Язык",
+                    "languageDescription": "Язык файла. Указание языка в формате ISO-639-1 повысит точность и уменьшит задержку.",
+                    "temperature": "Температура",
+                    "temperatureDescription": "Температура выборки в диапазоне от 0 до 1. Более высокие значения, такие как 0.8, сделают вывод более случайным, в то время как более низкие значения, такие как 0.2, сделают его более сфокусированным и детерминированным. Если установить значение 0, модель будет использовать логарифмическую вероятность для автоматического повышения температуры до достижения определенных порогов."
+                }
+            },
+            "GIGA_CHAT_TEXT": {
+                "GIGA_CHAT_TEXT": "GigaChat (Сбербанк)",
+                "options": {
+                    "model": {
+                        "GigaChat-Pro": "GigaChat Pro",
+                        "GigaChat": "GigaChat Lite"
+                    },
+                    "maxTokens": "⇛ai.model.OPEN_AI_TEXT.OPEN_AI_TEXT.options.maxTokens",
+                    "maxTokensDescription": "",
+                    "temperature": "",
+                    "temperatureDescription": ""
+                }
+            },
+            "GIGA_CHAT_CONVERSATION": {
+                "GIGA_CHAT_CONVERSATION": "⇛ai.model.GIGA_CHAT_TEXT.GIGA_CHAT_TEXT"
+            },
+            "GIGA_CHAT_IMAGE": {
+                "GIGA_CHAT_IMAGE": "Кандинский (Сбербанк)"
+            }
+        }
+    },
+    "error": {
+        "AI_TASK_ABORTED": "Задача прервана",
+        "AI_TASK_NOT_FOUND": "Задача не найдена",
+        "AI_TASK_FORBIDDEN": "Задача недоступна",
+        "AI_MODEL_NOT_FOUND": "Модель не найдена",
+        "AI_MODEL_NOT_SUPPORT_FILE": "Модель не поддерживает файл"
+    }
+}

@@ -1,16 +1,9 @@
 version: '3.2'
 
 services:
-  gnosis-db:
+  billiard-db:
     image: postgres:11.4-alpine
     env_file:
       - ./docker/database/.env
     ports:
-      - 28432:5432
-
-  vector-db:
-    image: ankane/pgvector
-    env_file:
-      - ./docker/database/.env
-    ports:
-      - 15432:5432
+      - 29432:5432

@@ -1,0 +1,114 @@
+{
+    "general": {
+        "all": "All",
+        "name": "Name",
+        "links": "Links",
+        "link": "Link",
+        "filter": "Filter",
+        "date": "Date",
+        "timeRange": "Dates",
+        "description": "Description",
+        "faq": "FAQ",
+        "textCopied": "Text copied to clipboard",
+        "advanced": "Learn more...",
+        "notifications": "Notifications",
+        "share": "Share",
+        "showHebrewNames": "Show Hebrew Names",
+
+        "back": "Back",
+        "copy": "Copy",
+        "refresh": "Refresh",
+        "select": "Select",
+        "add": "Add",
+        "submit": "Submit",
+        "download": "Download",
+        "upload": "Upload",
+
+        "edit": {
+            "edit": "Edit",
+            "confirmation": "Are you sure you want to edit?",
+            "notification": "Edited successfully"
+        },
+        "remove": {
+            "remove": "Remove",
+            "confirmation": "Are you sure you want to remove?",
+            "notification": "Removed successfully"
+        },
+        "save": {
+            "save": "Save",
+            "confirmation": "Are you sure you want to save changes?",
+            "notification": "Changes saved successfully"
+        },
+        "title": "Gnosis AI",
+        "header": "Gnosis AI",
+        "footer": "{version} from {versionDate}"
+    },
+    "pageNotFound": {
+        "title": "Page Not Found",
+        "description": "Unfortunately, the requested page was not found. You might have followed a link with a typo or the resource was removed.",
+        "back": "Return to the main page"
+    },
+    "format": {
+        "hourPlural": "{hours,plural, one {# hour} other{# hours}}",
+        "chunkPlural": "{chunks,plural, one {# chunk} other{# chunks}}",
+        "symbolPlural": "{symbols,plural, one {# symbol} other{# symbols}}",
+        "elementPlural": "{elements,plural, one {# element} other{# elements}}"
+    },
+    "theme": {
+        "theme": "Theme",
+        "dark": "Dark",
+        "light": "Light"
+    },
+    "color": {
+        "color": "Marker",
+        "null": "No marker",
+        "ONE": "Red",
+        "TWO": "Orange",
+        "THREE": "Yellow",
+        "FOUR": "Green",
+        "FIVE": "Cyan",
+        "SIX": "Blue",
+        "SEVEN": "Purple"
+    },
+    "notification": {},
+    "serviceWorker": {
+        "update": {
+            "loadedDescription": "A new version has been successfully loaded, please refresh the page to view it.",
+            "loadedCacheDescription": "A new version has been successfully loaded, please clear the cache and refresh the page to view it.",
+            "loaded": "New version loaded",
+            "loading": "A new version detected, loading update...",
+            "error": "An error occurred while loading the new version, please clear the cache and refresh the page."
+        }
+    },
+    "socket": {
+        "reconnect": {
+            "confirmation": "Connection to the server was interrupted, do you want to reconnect?"
+        }
+    },
+    "error": {
+        "400": "Bad request{message, select, null{} undefined{} other{<br/><br/>{message}}}",
+        "401": "Your session has expired, please log in again.",
+        "404": "Server method not found, please contact the administrator.",
+        "429": "Request limit exceeded from this IP address.",
+        "500": "Internal server error, please contact the administrator.<br/><br/>{message}",
+        "504": "Server timeout, please try again or contact the administrator.<br/><br/>{message}",
+        "5001": "⇛error.504",
+        "-1000": "{message}",
+        "5002": "Server is not responding, please check your internet connection. If the error persists, contact the administrator.<br/><br/>{message}",
+        "5003": "Exceeded the number of retry attempts (TransportWaitError).<br/><br/>{message}",
+        "5004": "Invalid data (TransportInvalidDataError).<br/><br/>{message}",
+        "network": "Server is not responding, please check your internet connection.",
+        "socketDisconnected": "Connection to the socket server lost. Do you want to reconnect?",
+        "REQUEST_INVALID": "Invalid request{name, select, null{} undefined{} other{<br/><br/>Parameter \"{name}\"}}{value, select, null{} undefined{} other{, received \"{value}\"}}{expected, select, null{ } undefined{ } NOT_NULL{, non-empty value expected}other{, expected value \"{expected}\"}}",
+        "LOGIN_ID_INVALID": "Invalid user ID",
+        "LOGIN_TOKEN_INVALID": "Invalid token",
+        "LOGIN_TOKEN_EXPIRED": "Token expired",
+        "LOGIN_SIGNATURE_INVALID": "Invalid signature",
+        "INSUFFICIENT_FUNDS": "Insufficient funds for this transaction.",
+        "TRANSPORT_TIMEOUT_ERROR": "Request timeout expired",
+        "form": {
+            "pattern": "Invalid characters",
+            "empty": "Only empty characters"
+        }
+    }
+}

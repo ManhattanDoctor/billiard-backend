@@ -1,0 +1,26 @@
+{
+    "voice": {
+        "voice": "Голос",
+        "voices": "Голоса",
+        "name": "Название",
+        "resource": {
+            "resource": "Ресурс",
+            "SPEECHIFY": "Speechify"
+        },
+        "add": {
+            "add": "Клонировать голос",
+            "confirmation": "Вы уверены что хотите клонировать голос?",
+            "notification": "Голос успешно клонирован",
+            "sample": "I have two pets - a cat and a dog. My cat's name is Murka. She is very cute and affectionate. My dog's name is Bobik. He is very playful and loves to run outside. We often go for walks in the park and play with a ball. I love my pets very much.<br/><br/>I have several hobbies. One of my favorite hobbies is reading books. I read different kinds of books: adventures, science fiction, historical novels.",
+            "description": "Для клонирования голоса вам необходимо выбрать аудио файл с вашим голосом. Если у вас нет файла с голосом, вы всегда можете записать его.<br/><br/>Образец записанного голоса – это 15-60 секунд чтения английской речи, без фонового шума и не более 5 мегабайт."
+        },
+        "record": {
+            "record": "Записать голос"
+        }
+    },
+    "error": {
+        "VOICE_NOT_FOUND": "Голос не найден",
+        "VOICE_FORBIDDEN": "Действие с голосом запрещено",
+        "VOICE_NAME_ALREADY_EXISTS": "Голос с этим названием уже существует"
+    }
+}

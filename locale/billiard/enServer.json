@@ -1,0 +1,21 @@
+{
+    "image": {
+        "recognition": {
+            "prompt": "Describe what's in this image.",
+            "response": "The image {index} shows {description}"
+        }
+    },
+    "text": {
+        "content": {
+            "description": "To form a response to a request, you take data only from the text below and under no circumstances use information from your knowledge."
+        }
+    },
+    "error": {
+        "EMPTY_SEARCH": "Nothing was found for your query",
+        "EMPTY_VECTORIZED_FILES": "There are no files with vectors",
+        "NO_IMAGES_FOR_RECOGNITION": "There are no images to identify"
+    },
+    "response": {
+        "empty": "Something went wrong and an empty response was returned, repeat your request again..."
+    }
+}

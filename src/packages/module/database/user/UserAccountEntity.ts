@@ -37,6 +37,11 @@ export class UserAccountEntity extends TypeormValidableEntity implements UserAcc
     @IsEnum(UserAccountType)
     public type: UserAccountType;
 
+    @Column({ name: 'is_disable_bonuses' })
+    @IsOptional()
+    @IsBoolean()
+    public isDisableBonuses?: boolean;
+
     @Column({ name: 'is_disable_comment_add' })
     @IsOptional()
     @IsBoolean()

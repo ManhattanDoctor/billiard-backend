@@ -15,7 +15,7 @@ import { Comment, CommentTargetType, COMMENT_TEXT_MAX_LENGTH, COMMENT_TEXT_MIN_L
 import { ICommentAddDto, ICommentAddDtoResponse } from '@project/common/api/comment';
 import { CommentEntity } from '@project/module/database/comment';
 import { TransformGroup } from '@project/module/database';
-import { CommentDisabledError, CommentForbiddenError, TarotSpreadNotFoundError } from '@project/module/core/middleware';
+import { CommentDisabledError, CommentForbiddenError } from '@project/module/core/middleware';
 import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { ParseUtil, PermissionUtil } from '@project/common/util';
 
@@ -82,6 +82,7 @@ export class CommentAddController extends DefaultController<ICommentAddDto, ICom
         }
 
         switch (params.targetType) {
+            /*
             case CommentTargetType.TAROT_SPREAD:
                 let tarotSpread = await this.database.tarotSpreadGet(params.targetId, false);
                 if (_.isNil(tarotSpread)) {
@@ -93,6 +94,7 @@ export class CommentAddController extends DefaultController<ICommentAddDto, ICom
                 break;
             default:
                 throw new UnreachableStatementError(params.targetType);
+            */
         }
 
         let item = await CommentEntity.saveEntity(user.id, params.text, params.targetId, params.targetType);

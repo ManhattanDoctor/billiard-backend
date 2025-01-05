@@ -1,0 +1,30 @@
+{
+    "payment": {
+        "payment": "Платеж",
+        "payments": "Платежи",
+        "user": "Платежи",
+        "createdDate": "Дата",
+        "aggregator": "Агрегатор",
+        "details": "Детали",
+        "transaction": {
+            "transaction": "Транзакция",
+            "transactions": "Транзакции",
+            "activatedDate": "Активирована",
+            "createdDate": "Создана",
+            "debet": "Дебет",
+            "credit": "Кредит",
+            "amount": "Сумма",
+            "description": "Описание",
+            "type": {
+                "type": "Тип",
+                "REFUND": "Возврат средств",
+                "CORRECTION": "Коррекция баланса",
+                "PURCHASE": "Покупка флоринов",
+                "TASK_PURCHASE": "Обращение к AI",
+                "TOOL_PURCHASE": "Использование AI инструмента",
+                "AGENT_PURCHASE": "Обращение к AI Агенту",
+                "REGISTRATION_BONUS": "Бонус за регистрацию"
+            }
+        }
+    }
+}

@@ -17,6 +17,7 @@ export class AddUser1627121260000 implements MigrationInterface {
                     constraint "user_login_pkey" unique,
                 "resource" varchar not null,
                 "status" varchar not null,
+                "last_login" timestamp not null,
                 "created" timestamp default now() not null
             );
 
@@ -28,6 +29,7 @@ export class AddUser1627121260000 implements MigrationInterface {
                     constraint "user_account_user_id_key" unique
                     constraint "user_account_user_id_fkey" references "user" on delete cascade,
                 "type" varchar not null,
+                "is_disable_bonuses" boolean,
                 "is_disable_comment_add" boolean
             );
 
@@ -51,7 +53,7 @@ export class AddUser1627121260000 implements MigrationInterface {
 
                 "location" varchar,
                 "latitude" numeric,
-                "longitude" numeric
+                "longitude" numeric,
 
                 "vk" varchar,
                 "facebook" varchar,
@@ -62,7 +64,7 @@ export class AddUser1627121260000 implements MigrationInterface {
                 "is_not_suggest_show_help" boolean,
                 "is_not_suggest_add_to_profile" boolean,
                 "is_not_suggest_add_to_favorites" boolean,
-                "is_not_suggest_allow_send_notifications" boolean,
+                "is_not_suggest_allow_send_notifications" boolean
             );
 
             create table if not exists "user_statistics"
@@ -81,6 +83,7 @@ export class AddUser1627121260000 implements MigrationInterface {
         const sql = `
             drop table if exists "user" cascade;
             drop table if exists "user_account" cascade;
+            drop table if exists "user_statistics" cascade;
             drop table if exists "user_preferences" cascade;
         `;
         await queryRunner.query(sql);

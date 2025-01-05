@@ -1,10 +1,9 @@
 import { AbstractSettings } from '@project/module/core';
 import { IVkStrategySettings, IJwtStrategySettings, IYaStrategySettings, IVkStrategyInternalSettings, IGoStrategySettings, ITgStrategySettings } from '@project/module/login/strategy';
-import { INotificationSettings } from '@project/module/notification';
 import { IDatabaseSettings, IWebSettings } from '@ts-core/backend';
 
 export class AppSettings extends AbstractSettings
-    implements IJwtStrategySettings, IYaStrategySettings, IGoStrategySettings, IVkStrategyInternalSettings, IVkStrategySettings, ITgStrategySettings, IWebSettings, IDatabaseSettings, INotificationSettings {
+    implements IJwtStrategySettings, IYaStrategySettings, IGoStrategySettings, IVkStrategyInternalSettings, IVkStrategySettings, ITgStrategySettings, IWebSettings, IDatabaseSettings {
     // --------------------------------------------------------------------------
     //
     //  Public Database Properties

@@ -1,0 +1,10 @@
+{
+    "voice": {
+        "voice": "Voice",
+        "voices": "Voices"
+        
+    },
+    "error": {
+        "fileIdNotFound": "File unique ID not found"
+    }
+}

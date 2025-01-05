@@ -1,0 +1,63 @@
+{
+    "conversation": {
+        "conversation": "Conversation",
+        "conversations": "Conversations",
+        "name": "Conversation name",
+        "nameDescription": "For example, Psychologist - Valeria or Writer - Anton",
+        "system": "Features",
+        "systemDescription": "The personality and features of your interlocutor, for example: \"Your name is Valeria. You are a professional psychologist, a patient has come to you for help. Communicate in a friendly and gentle manner, do not talk on topics unrelated to psychology.\"",
+        "user": "User",
+        "opponent": "AI",
+        "command": {
+            "command": "System Message",
+            "HISTORY_RESET": "Chat context has been reset"
+        },
+        "add": {
+            "confirmation": "Are you sure you want to add a conversation?"
+        },
+        "isConsiderHistory": "Analyze dialogue context",
+        "error": "An error occurred",
+        "check": {
+            "check": "Restart",
+            "confirmation": "Are you sure you want to restart the operation?"
+        },
+        "duplicate": {
+            "duplicate": "Duplicate",
+            "confirmation": "Are you sure you want to create a new conversation with these settings?"
+        },
+        "cancel": {
+            "cancel": "Cancel",
+            "confirmation": "Are you sure you want to cancel the operation?"
+        },
+        "clear": {
+            "clear": "Clear",
+            "confirmation": "Are you sure you want to delete all messages?"
+        },
+        "export": {
+            "export": "Export",
+            "confirmation": "Are you sure you want to export messages?",
+            "notification": "Messages copied to clipboard"
+        },
+        "message": {
+            "message": "Message",
+            "noDataFound": "You have no messages yet"
+        },
+        "history": {
+            "history": "Context size",
+            "description": "The number of previous messages for the model's response context. The larger the value, the more of your dialogue the model 'remembers', but the more expensive the requests to it.",
+            "reset": {
+                "reset": "Reset context",
+                "confirmation": "Are you sure you want to reset the context?"
+            }
+        },
+        "createdDate": "Date",
+        "content": {
+            "value": "Value"
+        }
+    },
+    "error": {
+        "conversationIdNotFound": "Conversation ID not found",
+        "CONVERSATION_NOT_FOUND": "Conversation not found",
+        "CONVERSATION_FORBIDDEN": "Action with conversation forbidden"
+    }
+}

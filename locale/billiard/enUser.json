@@ -1,0 +1,95 @@
+{
+    "user": {
+        "id": "#",
+        "login": "Login",
+        "user": "User",
+        "users": "Users",
+        "createdDate": "Registration",
+        "statistics": {},
+        "preferences": {
+            "preferences": "Preferences",
+            "uid": "Unique code",
+            "name": "Name",
+            "email": "Email",
+            "location": "⇛geo.location",
+            "birthday": "Date of birth",
+            "description": "About me",
+            "theme": {
+                "theme": "Theme",
+                "DARK": "Dark",
+                "LIGHT": "Light"
+            },
+            "locale": {
+                "locale": "Language",
+                "ru": "Russian",
+                "en": "English"
+            },
+            "isMale": {
+                "isMale": "Gender",
+                "true": "Male",
+                "false": "Female"
+            }
+        },
+        "account": {
+            "account": "Account",
+            "FREE": "Free",
+            "ADMINISTRATOR": "Administrator"
+        },
+        "open": {
+            "confirmation": "Are you sure you want to follow the link \"{url}\"?"
+        },
+        "pictureUpdate": {
+            "pictureUpdate": "Upload avatar",
+            "confirmation": "Do you want to upload the latest avatar from your account?"
+        }
+    },
+    "format": {
+        "userPlural": "{users, plural, one {# user} other{# users}}",
+        "userPluralHidden": "{users, plural, one {user} other{users}}",
+        "agePlural": "{ages,plural, one {# year} other{# years}}",
+        "agePluralHidden": "{ages,plural, one {year} other{years}}"
+    },
+    "login": {
+        "login": {
+            "login": "Login",
+            "description": "You can log in using one of the methods below. This will give you additional features and access to new sections."
+        },
+        "logout": {
+            "logout": "Logout",
+            "confirmation": "Are you sure you want to log out?"
+        },
+        "logoutOthers": {
+            "logoutOthers": "Log out from all other sessions",
+            "confirmation": "Are you sure you want to log out on all other devices except this one?",
+            "notification": "You have successfully logged out on all devices"
+        },
+        "isNotLoggedIn": {
+            "isNotLoggedIn": "Already have an account?",
+            "description": "Log in..."
+        },
+        "resource": {
+            "VK": "VKontakte",
+            "GOOGLE": "Google",
+            "YANDEX": "Yandex",
+            "MAIL": "Mail.ru",
+            "FACEBOOK": "Facebook",
+            "ETHEREUM": "Ethereum",
+            "TELEGRAM": "Telegram"
+        }
+    },
+    "profile": {
+        "file": "Files",
+        "profile": "My profile",
+        "openAiAgent": "Agents",
+        "conversation": "Conversations",
+        "coinTransaction": "My Balance"
+    },
+    "error": {
+        "userUidNotFound": "User unique ID not found",
+        "USER_UNDEFINED": "User is undefined",
+        "USER_NOT_FOUND": "User not found",
+        "USER_FORBIDDEN": "User is forbidden",
+        "USER_TOKEN_INVALID": "⇛error.LOGIN_TOKEN_INVALID",
+        "USER_TOKEN_EXPIRED": "⇛error.LOGIN_TOKEN_EXPIRED"
+    }
+}

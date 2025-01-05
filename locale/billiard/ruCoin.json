@@ -1,0 +1,19 @@
+{
+    "coin": {
+        "topUp": "Пополнить баланс",
+        "balance": "Баланс",
+        "balances": "Балансы",
+        "description": "",
+        "coinId": {
+            "coinId": "Валюта",
+            "RUBPlural": "{amount, plural, one {# рубль} few {# рубля} many{# рублей} other{}}",
+            "RUBPluralHidden": "{amount, plural, one {рубль} few {рубля} many{рублей} other{}}"
+        },
+        "buy": {
+            "buy": "Купить",
+            "notification": "Поздравляем! Вы успешно прибрели <b class='color-success'>+{amount}</b>.",
+            "isAgreeOferta": "Я прочитал и согласен с <a href='https://gnosisai.ru/oferta' target='_blank'>публичной офертой</a>",
+            "description": "Вы можете купить необходимое количество и впоследствии потратить на различные сервисы и услуги в нашем сервисе."
+        }
+    }
+}

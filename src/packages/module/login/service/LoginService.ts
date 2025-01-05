@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { UnreachableStatementError } from '@ts-core/common';
 import { Logger, LoggerWrapper } from '@ts-core/common';
 import { JwtService } from '@nestjs/jwt';
-import { createHash } from 'crypto';
 import { ILoginDto, ILoginDtoResponse, LoginResource } from '@project/common/api/login';
 import { UserEntity } from '@project/module/database/user';
-import { GoStrategy, MaStrategy, ILoginStrategy, VkStrategyInternal, VkStrategy, YaStrategy, TgStrategy, TgStrategyInternal, ILoginStrategyProfile } from '../strategy';
+import { GoStrategy, MaStrategy, ILoginStrategy, VkStrategyInternal, VkStrategy, YaStrategy, TgStrategy, TgStrategyInternal, ILoginStrategyProfile, IJwtUser } from '../strategy';
 import { UserResource, UserStatus, USER_PREFERENCES_NAME_MIN_LENGTH, USER_PREFERENCES_NICKNAME_MIN_LENGTH, USER_PREFERENCES_NICKNAME_MAX_LENGTH } from '@project/common/user';
 import { DatabaseService } from '@project/module/database/service';
 import { RandomUtil } from '@ts-core/common';
@@ -28,10 +27,6 @@ export class LoginService extends LoggerWrapper {
             throw new LoginIdInvalidError(id);
         }
         return item;
-    }
-
-    public static hashToken(item: string): string {
-        return !_.isNil(item) ? createHash('md5').update(item).digest("hex") : null;
     }
 
     // --------------------------------------------------------------------------
@@ -82,13 +77,7 @@ export class LoginService extends LoggerWrapper {
 
     private getNickname(user: UserEntity): string {
         let { nickname } = user.preferences;
-        if (_.isEmpty(nickname)) {
-            return RandomUtil.randomString(USER_PREFERENCES_NICKNAME_MIN_LENGTH);
-        }
-        if (nickname.length < USER_PREFERENCES_NAME_MIN_LENGTH) {
-            return `${nickname}${RandomUtil.randomString(USER_PREFERENCES_NICKNAME_MAX_LENGTH - nickname.length)}`;
-        }
-        return nickname;
+        return !_.isEmpty(nickname) ? nickname : `user_${user.id}`;
     }
 
     private getStrategy(resource: LoginResource): ILoginStrategy {
@@ -129,36 +118,18 @@ export class LoginService extends LoggerWrapper {
 
         UserGuard.checkUser({ isRequired: true, status: [UserStatus.ACTIVE] }, user);
 
-        let payload: LoginUser = { id: user.id, login: user.login, status: user.status };
-        let token = this.jwt.sign(payload);
-
-        /*
-        let decoded = this.jwt.decode(token);
-        let userToken = new UserTokenEntity();
-        userToken.user = user;
-        userToken.token = LoginService.hashToken(token);
-        userToken.expired = DateUtil.getDate(new Date(1970, 0, 1).getTime() + DateUtil.MILLISECONDS_SECOND * decoded['exp']);
-        await this.database.userToken.save(userToken);
-        await this.database.userTokensRemove(user);
-        */
-        return { sid: token };
+        let item: IJwtUser = { id: user.id, login: user.login };
+        return { sid: this.jwt.sign(item) };
     }
 
-    // --------------------------------------------------------------------------
-    //
-    //  Public Methods
-    //
-    // --------------------------------------------------------------------------
-
-    public async validate(payload: LoginUser): Promise<UserEntity> {
-        let user = await this.database.userGet(payload.id, true);
+    public async userGet(item: IJwtUser): Promise<UserEntity> {
+        let user = await this.database.userGet(item.id, true);
         UserGuard.checkUser({ isRequired: true, status: [UserStatus.ACTIVE] }, user);
         return Promise.resolve(user);
     }
+
+    public jwtUserGet(item: string): IJwtUser {
+        return this.jwt.verify<IJwtUser>(item);
+    }
 }
 
-export interface LoginUser {
-    id: number;
-    login: string;
-    status: UserStatus;
-}

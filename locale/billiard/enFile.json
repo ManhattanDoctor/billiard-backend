@@ -1,0 +1,90 @@
+{
+    "file": {
+        "file": "File",
+        "files": "Files",
+        "browse": "Browse files",
+        "drop": "or drop files here",
+        "name": "Name",
+        "type": {
+            "type": "Type",
+            "IMAGE": "Image",
+            "AUDIO": "Audio",
+            "VIDEO": "Video",
+            "DOCUMENT": "Document"
+        },
+        "createdDate": "Date",
+        "vector": {
+            "isRecognizeImages": "Recognize images",
+            "added": "File successfully vectorized",
+            "errored": "Error during file vectorization: {error}",
+            "add": {
+                "add": "Vectorize",
+                "confirmation": "Are you sure you want to vectorize?",
+                "notification": "File successfully sent for vectorization. You need to wait for a while, the duration of the process depends on its size and the number of chunks."
+            },
+            "split": {
+                "split": "Test",
+                "result": "Result",
+                "description": "File size is {symbols} and it will be split into {chunks}."
+            },
+            "content": {
+                "content": "Content",
+                "description": "File split into {chunks}."
+            },
+            "remove": {
+                "remove": "Remove vector",
+                "confirmation": "Are you sure you want to remove the vector?",
+                "notification": "Vector successfully removed"
+            }
+        },
+        "search": {
+            "search": "Search in files",
+            "divider": "Divider",
+            "minScore": "Minimum score",
+            "isUseChunks": "Use chunks",
+            "maxDocuments": "Maximum documents",
+            "isOnlyNotEmpty": "Process only if data is found",
+            "scope": {
+                "scope": "Search scope",
+                "ANY": "In all my files",
+                "BASE_ONLY": "Only in conversation files",
+                "FILES_ONLY": "Only in files attached to messages"
+            }
+        },
+        "splitter": {
+            "splitter": "Splitting",
+            "type": {
+                "AI": {
+                    "AI": "By logical blocks (AI)"
+                },
+                "CHARACTER": {
+                    "CHARACTER": "By character",
+                    "options": {
+                        "chunkSize": "Chunk size",
+                        "separator": "Separator character",
+                        "chunkOverlap": "Overlap size",
+                        "keepSeparator": "Do not remove separator"
+                    }
+                }
+            }
+        },
+        "download": {
+            "download": "Download file to device",
+            "notification": "File successfully downloaded to your device"
+        },
+        "upload": {
+            "upload": "Upload to your file storage",
+            "notification": "File successfully uploaded to your storage"
+        }
+    },
+    "error": {
+        "fileIdNotFound": "File unique ID not found",
+        "FILE_NAME_INVALID": "Invalid file name",
+        "FILE_MIME_INVALID": "Invalid file type",
+        "FILE_SIZE_INVALID": "File size too large",
+        "FILE_AMOUNT_EXCEED": "You have already uploaded too many files",
+        "FILE_VECTOR_ID_NOT_FOUND": "Vector for the file not found",
+        "FILE_VECTOR_ID_ALREADY_EXISTS": "File already vectorized",
+        "FILE_VECTOR_INVALID_MIME": "File of this type cannot be vectorized"
+    }
+}

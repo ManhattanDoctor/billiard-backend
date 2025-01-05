@@ -1,6 +1,6 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { LoginService, LoginUser } from '../service';
+import { LoginService } from '../service';
 import { UserEntity } from '@project/module/database/user';
 
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -20,16 +20,21 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     //
     // --------------------------------------------------------------------------
 
-    public async validate(user: LoginUser, done: (error: Error, user: UserEntity) => any): Promise<any> {
+    public async validate(item: IJwtUser, done: (error: Error, user: UserEntity) => any): Promise<any> {
         try {
-            done(null, await this.service.validate(user));
+            done(null, await this.service.userGet(item));
         } catch (error) {
             return done(error, null);
         }
     }
 }
 
-export class IJwtStrategySettings {
+export interface IJwtUser {
+    id: number;
+    login: string;
+}
+
+export interface IJwtStrategySettings {
     readonly jwtSecret: string;
     readonly jwtExpiresTimeout: number;
 }

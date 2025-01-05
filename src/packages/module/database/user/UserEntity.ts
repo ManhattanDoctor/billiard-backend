@@ -4,7 +4,7 @@ import { TypeormValidableEntity } from '@ts-core/backend';
 import { Exclude, Expose, ClassTransformOptions, Type } from 'class-transformer';
 import { ValidateNested, IsDate, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { TRANSFORM_PRIVATE, TransformGroup } from '../TransformGroup';
+import { TransformGroup } from '../TransformGroup';
 import { UserAccountEntity } from './UserAccountEntity';
 import { UserPreferencesEntity } from './UserPreferencesEntity';
 import { TransformUtil } from '@ts-core/common';
@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 import { UserStatisticsEntity } from './UserStatisticsEntity';
 import { CoinAccountEntity } from '../coin';
 import { PaymentEntity, PaymentTransactionEntity } from '../payment';
+import { TRANSFORM_PRIVATE } from '@project/module/core';
 
 @Entity({ name: 'user' })
 export class UserEntity extends TypeormValidableEntity implements User {
@@ -45,6 +46,11 @@ export class UserEntity extends TypeormValidableEntity implements User {
     @CreateDateColumn()
     public created: Date;
 
+    @Expose({ groups: TRANSFORM_PRIVATE })
+    @Column({ name: 'last_login' })
+    @IsDate()
+    public lastLogin: Date;
+
     @OneToOne(() => UserAccountEntity, account => account.user, { cascade: true })
     @ValidateNested()
     public account: UserAccountEntity;
@@ -58,25 +64,19 @@ export class UserEntity extends TypeormValidableEntity implements User {
     public statistics: UserStatisticsEntity;
 
     @Exclude()
-    @Column({ name: 'last_login' })
-    @IsOptional()
-    @IsDate()
-    public lastLogin?: Date;
-
-    @Exclude()
     @OneToMany(() => PaymentEntity, item => item.user)
     @Type(() => PaymentEntity)
     public payments?: Array<PaymentEntity>;
 
     @Exclude()
-    @OneToMany(() => PaymentTransactionEntity, item => item.user)
-    @Type(() => PaymentTransactionEntity)
-    public paymentTransactions?: Array<PaymentTransactionEntity>;
-
-    @Exclude()
     @OneToMany(() => CoinAccountEntity, item => item.user)
     @Type(() => CoinAccountEntity)
     public coinAccounts?: Array<CoinAccountEntity>;
+
+    @Exclude()
+    @OneToMany(() => PaymentTransactionEntity, item => item.user)
+    @Type(() => PaymentTransactionEntity)
+    public paymentTransactions?: Array<PaymentTransactionEntity>;
 
     // --------------------------------------------------------------------------
     //
@@ -85,21 +85,10 @@ export class UserEntity extends TypeormValidableEntity implements User {
     // --------------------------------------------------------------------------
 
     public toString(): string {
-        return `${this.login}(${this.notifableUid})`;
+        return `${this.login} (${this.preferences.name})`;
     }
 
     public toObject(options?: ClassTransformOptions): User {
         return TransformUtil.fromClass<User>(this, options);
-    }
-
-    // --------------------------------------------------------------------------
-    //
-    //  Public Properties
-    //
-    // --------------------------------------------------------------------------
-
-    @Exclude({ toPlainOnly: true })
-    public get notifableUid(): number {
-        return this.id;
     }
 }

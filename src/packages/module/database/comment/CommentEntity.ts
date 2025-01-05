@@ -5,7 +5,7 @@ import { IsEnum, Length, IsNumber, IsOptional, IsString } from 'class-validator'
 import { Column, CreateDateColumn, UpdateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from '../user';
 import { Comment, CommentTargetType, COMMENT_TEXT_MAX_LENGTH, COMMENT_TEXT_MIN_LENGTH } from '@project/common/comment';
-import { TRANSFORM_PRIVATE } from '../TransformGroup';
+import { TRANSFORM_PRIVATE } from '@project/module/core';
 import * as _ from 'lodash';
 
 @Entity({ name: 'comment' })

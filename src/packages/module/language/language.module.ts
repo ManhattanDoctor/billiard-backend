@@ -18,15 +18,16 @@ export class LanguageModule {
     public static forRoot(path: string): DynamicModule {
         let projects = [
             ...ProjectLanguageProjects,
+            /*
             {
                 name: BilliardLanguage.NAME,
                 locales: ['ru'],
                 prefixes: [
-                  
                     'Payment.json',
                     'Server.json'
                 ]
             }
+            */
         ];
         return {
             global: true,

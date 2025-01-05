@@ -6,7 +6,7 @@ import { INIT_URL } from '@project/common/api';
 import { IInitDto, IInitDtoResponse } from '@project/common/api/login';
 import { User } from '@project/common/user';
 import { DefaultController } from '@ts-core/backend';
-import { Logger, TransformUtil } from '@ts-core/common';
+import { Logger } from '@ts-core/common';
 import { IsString, IsOptional, IsDefined } from 'class-validator';
 import { Swagger } from '@project/module/swagger';
 import { IUserHolder, UserEntity } from '@project/module/database/user';
@@ -14,15 +14,9 @@ import { UserGuard } from '@project/module/guard';
 import { TransformGroup } from '@project/module/database';
 import { CoinBonusDto } from '@project/common/api/coin';
 import { CoinAccounts } from '@project/common/coin';
-import { CoinService } from '@project/module/coin/service';
 import { IUserDetails } from '@project/common/api/user';
+import { CoinService } from '@project/module/coin/service';
 import * as _ from 'lodash';
-
-// --------------------------------------------------------------------------
-//
-//  Dto
-//
-// --------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------
 //

@@ -1,0 +1,96 @@
+{
+    "user": {
+        "id": "#",
+        "login": "Логин",
+        "user": "Пользователь",
+        "users": "Пользователи",
+        "createdDate": "Регистрация",
+        "statistics": {},
+        "preferences": {
+            "preferences": "Настройки",
+            "uid": "Уникальный код",
+            "name": "Имя",
+            "email": "Email",
+
+            "location": "⇛geo.location",
+            "birthday": "Дата рождения",
+            "description": "О себе",
+            "theme": {
+                "theme": "Тема",
+                "DARK": "Темная",
+                "LIGHT": "Светлая"
+            },
+            "locale": {
+                "locale": "Язык",
+                "ru": "Русский",
+                "en": "English"
+            },
+            "isMale": {
+                "isMale": "Пол",
+                "true": "Мужчина",
+                "false": "Женщина"
+            }
+        },
+        "account": {
+            "account": "Аккаунт",
+            "FREE": "Обычный",
+            "ADMINISTRATOR": "Администратор"
+        },
+        "open": {
+            "confirmation": "Вы уверены что хотите перейти по ссылке \"{url}\"?"
+        },
+        "pictureUpdate": {
+            "pictureUpdate": "Загрузить аватар",
+            "confirmation": "Вы хотите загрузить актуальный аватар из вашего аккаунта?"
+        }
+    },
+    "format": {
+        "userPlural": "{users,plural, one {# пользователь} few {# пользователя} many{# пользователей} other{}}",
+        "userPluralHidden": "{users,plural, one {пользователь} few {пользователя} many{пользователей} other{}}",
+        "agePlural": "{ages,plural, one {# год} few {# года} many{# лет} other{}}",
+        "agePluralHidden": "{ages,plural, one {год} few {года} many{лет} other{}}"
+    },
+    "login": {
+        "login": {
+            "login": "Войти",
+            "description": "Вы можете войти, используя один из предложенных ниже способов, это даст вам дополнительные возможности и доступ к новым разделам."
+        },
+        "logout": {
+            "logout": "Выйти",
+            "confirmation": "Вы точно хотите выйти?"
+        },
+        "logoutOthers": {
+            "logoutOthers": "Завершить все другие сессии",
+            "confirmation": "Вы точно хотите выйти на всех других устройствах, кроме этого?",
+            "notification": "Вы успешно вышли на всех устройствах"
+        },
+        "isNotLoggedIn": {
+            "isNotLoggedIn": "Уже есть аккаунт?",
+            "description": "Войти..."
+        },
+        "resource": {
+            "VK": "Вконтакте",
+            "GOOGLE": "Google",
+            "YANDEX": "Яндекс",
+            "MAIL": "Mail.ru",
+            "FACEBOOK": "Facebook",
+            "TELEGRAM": "Telegram",
+            "ETHEREUM": "Ethereum"
+        }
+    },
+    "profile": {
+        "file": "Файлы",
+        "profile": "Мой профиль",
+        "openAiAgent": "Агенты",
+        "conversation": "Беседы",
+        "coinTransaction": "Мой Баланс"
+    },
+    "error": {
+        "userUidNotFound": "Отсутствует уникальный номер пользователя",
+        "USER_UNDEFINED": "Пользователь не определен",
+        "USER_NOT_FOUND": "Пользователь не найден",
+        "USER_FORBIDDEN": "Пользователь недоступен",
+        "USER_TOKEN_INVALID": "⇛error.LOGIN_TOKEN_INVALID",
+        "USER_TOKEN_EXPIRED": "⇛error.LOGIN_TOKEN_EXPIRED"
+    }
+}

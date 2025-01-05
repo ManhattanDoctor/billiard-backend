@@ -101,7 +101,7 @@ export class CommentListController extends DefaultController<CommentListDto, Com
         if (_.isNil(params.conditions.targetId) || _.isArray(params.conditions.targetId)) {
             throw new RequestInvalidError({ name: 'conditions.targetId', value: params.conditions.targetId })
         }
-
+        /*
         if (params.conditions.targetType === CommentTargetType.TAROT_SPREAD) {
             let item = await this.database.tarotSpreadGet(params.conditions.targetId as number, false);
             if (!PermissionUtil.spreadIsCanGet(item, request.user)) {
@@ -111,6 +111,7 @@ export class CommentListController extends DefaultController<CommentListDto, Com
         else {
             throw new RequestInvalidError({ name: 'conditions.targetType', value: params.conditions.targetType as any, expected: [CommentTargetType.TAROT_SPREAD] })
         }
+        */
 
         let query = CommentEntity.createQueryBuilder('сomment');
         query.where('сomment.targetId = :targetId', { targetId: params.conditions.targetId })

@@ -4,11 +4,11 @@ import { Logger, DateUtil, ExtendedError } from '@ts-core/common';
 import { IOAuthPopUpDto, OAuthParser } from '@ts-core/oauth';
 import { ErrorCode, OAUTH_URL } from '@project/common/api';
 import { Response as ExpressResponse } from 'express';
-import * as _ from 'lodash';
 import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { THROTTLE_LIMIT_FAST, THROTTLE_TTL_FAST } from '@project/module/guard';
 import { ApiProperty } from '@nestjs/swagger';
 import { Length, IsString } from 'class-validator';
+import * as _ from 'lodash';
 
 // --------------------------------------------------------------------------
 //
