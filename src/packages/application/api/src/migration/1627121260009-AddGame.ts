@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddUser1627121260000 implements MigrationInterface {
+export class AddGame1627121260009 implements MigrationInterface {
     // --------------------------------------------------------------------------
     //
     //  Public Methods
@@ -9,20 +9,33 @@ export class AddUser1627121260000 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         const sql = `
-            create table if not exists "user"
+            create table if not exists "game_pattern"
             (
                 "id" serial not null 
-                    constraint "user_id_pkey" primary key,
-                "login" varchar not null 
-                    constraint "user_login_pkey" unique,
-                "resource" varchar not null,
-                "status" varchar not null,
-                "last_login" timestamp not null,
+                    constraint "game_pattern_id_pkey" primary key,
+                "name" varchar not null,
+                "type" varchar not null,
+                "ball" json array,
+                "foul" json array,
                 
                 "created" timestamp default now() not null
             );
 
-            create table if not exists "user_account"
+            create table if not exists "game_session"
+            (
+                "id" serial not null 
+                    constraint "game_session_id_pkey" primary key,
+                "name" varchar not null,
+                "type" varchar not null,
+                "code" varchar not null,
+                "status" varchar not null,
+                "ball" json array,
+                "foul" json array,
+                
+                "created" timestamp default now() not null
+            );
+
+            create table if not exists "game_session"
             (
                 "id" serial not null 
                     constraint "user_account_id_pkey" primary key,

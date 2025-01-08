@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddTelegramAccount16271212600023 implements MigrationInterface {
+export class AddTelegramAccount1627121260006 implements MigrationInterface {
     // --------------------------------------------------------------------------
     //
     //  Public Methods

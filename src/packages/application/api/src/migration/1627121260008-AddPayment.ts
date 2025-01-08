@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddPayment16271212600025 implements MigrationInterface {
+export class AddPayment1627121260008 implements MigrationInterface {
     // --------------------------------------------------------------------------
     //
     //  Public Methods

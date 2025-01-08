@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddCoinAccount16271212600024 implements MigrationInterface {
+export class AddCoinAccount1627121260007 implements MigrationInterface {
     // --------------------------------------------------------------------------
     //
     //  Public Methods
