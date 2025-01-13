@@ -9,14 +9,38 @@ export class AddGame1627121260009 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         const sql = `
+            create table if not exists "game_partner"
+            (
+                "id" serial not null 
+                    constraint "game_partner_id_pkey" primary key,
+
+                "user_id" integer not null
+                    constraint "game_partner_user_id_fkey" references "user" on delete cascade,
+
+                "user_linked_id" integer
+                    constraint "game_partner_user_linked_id_fkey" references "user",
+
+                "name" varchar not null,
+                "status" varchar not null,
+                "is_favorite" boolean,
+                
+                "created" timestamp default now() not null
+            );
+
+            create unique index "game_partner_ukey_user_id_user_linked_id" on "game_partner" (user_id, user_linked_id) nulls not distinct;
+
             create table if not exists "game_pattern"
             (
                 "id" serial not null 
                     constraint "game_pattern_id_pkey" primary key,
+
+                "user_id" integer
+                    constraint "game_partner_user_id_fkey" references "user" on delete cascade,
+
                 "name" varchar not null,
                 "type" varchar not null,
-                "ball" json array,
-                "foul" json array,
+                "status" varchar not null,
+                "conditions" json array,
                 
                 "created" timestamp default now() not null
             );
@@ -25,80 +49,117 @@ export class AddGame1627121260009 implements MigrationInterface {
             (
                 "id" serial not null 
                     constraint "game_session_id_pkey" primary key,
+
                 "name" varchar not null,
                 "type" varchar not null,
                 "code" varchar not null,
                 "status" varchar not null,
-                "ball" json array,
-                "foul" json array,
-                
-                "created" timestamp default now() not null
+
+                "user_id" integer not null
+                    constraint "game_session_user_id_fkey" references "user" on delete cascade,
+
+                "coin_id" varchar,
+                "shuffling" varchar,
+                "permission" json,
+                "multiplier" numeric,
+                "conditions" json array
             );
 
-            create table if not exists "game_session"
+            create table if not exists "game_session_game_partner"
             (
-                "id" serial not null 
-                    constraint "user_account_id_pkey" primary key,
-                "user_id" integer
-                    constraint "user_account_user_id_key" unique
-                    constraint "user_account_user_id_fkey" references "user" on delete cascade,
-                "type" varchar not null,
-                "is_disable_bonuses" boolean,
-                "is_disable_comment_add" boolean
-            );
+                "game_session_id" integer not null references "game_session" (id) on delete cascade,
+                "game_partner_id" integer not null references "game_partner" (id) on delete cascade,
 
-            create table if not exists "user_preferences"
-            (
-                "id" serial not null 
-                    constraint "user_preferences_id_pkey" primary key,
-                "user_id" integer
-                    constraint "user_preferences_user_id_key" unique
-                    constraint "user_preferences_user_id_fkey" references "user" on delete cascade,
-
-                "name" varchar not null,
-                "nickname" varchar not null constraint "user_preferences_nickname_key" unique,
-                "phone" varchar,
-                "email" varchar,
-                "locale" varchar,
-                "picture" varchar,
-                "is_male" boolean,
-                "birthday" timestamp,
-                "description" varchar,
-
-                "location" varchar,
-                "latitude" numeric,
-                "longitude" numeric,
-
-                "vk" varchar,
-                "facebook" varchar,
-                "telegram" varchar,
-                "instagram" varchar,
-
-                "is_hide_from_people" boolean,
-                "is_not_suggest_show_help" boolean,
-                "is_not_suggest_add_to_profile" boolean,
-                "is_not_suggest_add_to_favorites" boolean,
-                "is_not_suggest_allow_send_notifications" boolean
-            );
-
-            create table if not exists "user_statistics"
-            (
-                "id" serial not null 
-                    constraint "user_statistics_id_pkey" primary key,
-                "user_id" integer
-                    constraint "user_statistics_user_id_key" unique
-                    constraint "user_statistics_user_id_fkey" references "user" on delete cascade
+                primary key (game_session_id, game_partner_id)
             );
         `;
+
+        /*
+            create table if not exists "game"
+            (
+                "id" serial not null 
+                    constraint "game_id_pkey" primary key,
+
+                "game_session_id" integer not null
+                    constraint "game_game_session_id_fkey" references "game_session" on delete cascade,
+
+                "multiplier" numeric
+            );
+
+            create table if not exists "game_game_partner"
+            (
+                "game_id" integer not null references "game" (id) on delete cascade,
+                "game_partner_id" integer not null references "game_partner" (id) on delete cascade,
+
+                primary key (game_id, game_partner_id)
+            );
+
+            create table if not exists "game_ball"
+            (
+                "id" serial not null 
+                    constraint "game_ball_id_pkey" primary key,
+
+                "game_id" integer not null
+                    constraint "game_ball_game_id_fkey" references "game" on delete cascade,
+
+                "game_partner_id" integer not null
+                    constraint "game_ball_game_partner_id_fkey" references "game_partner" on delete cascade,
+
+                "tags" json array
+            );
+
+            create table if not exists "game_partner_result"
+            (
+                "id" serial not null 
+                    constraint "game_partner_result_id_pkey" primary key,
+
+                "game_id" integer not null
+                    constraint "game_partner_result_game_id_fkey" references "game" on delete cascade,
+
+                "game_partner_id" integer not null
+                    constraint "game_partner_result_game_partner_id_fkey" references "game_partner" on delete cascade,
+
+                "score" json not null,
+                "balance" json
+            );
+
+            create table if not exists "game_session_transaction"
+            (
+                "id" serial not null 
+                    constraint "game_session_transaction_id_pkey" primary key,
+
+                "type" varchar not null,
+                "status" varchar not null,
+
+                "game_session_id" integer not null
+                    constraint "game_session_transaction_game_session_id_fkey" references "game_session" on delete cascade,
+                
+                "game_id" integer
+                    constraint "game_session_transaction_game_id_fkey" references "game" on delete cascade,
+                
+                "game_ball_id" integer
+                    constraint "game_session_transaction_game_id_fkey" references "game" on delete cascade,
+
+                "debit_id" integer
+                    constraint "game_session_transaction_debit_id_fkey" references "game_partner" on delete cascade,
+
+                "credit_id" integer
+                    constraint "game_session_transaction_cr_id_fkey" references "game_partner" on delete cascade,
+
+                "score" integer,
+                "amount" numeric,
+                "coin_id" varchar,
+
+                "created" timestamp default now() not null
+            );
+        */
         await queryRunner.query(sql);
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
         const sql = `
-            drop table if exists "user" cascade;
-            drop table if exists "user_account" cascade;
-            drop table if exists "user_statistics" cascade;
-            drop table if exists "user_preferences" cascade;
+            drop table if exists "game_partner" cascade;
+            drop index if exists "game_partner_ukey_user_id_user_linked_id";
         `;
         await queryRunner.query(sql);
     }

@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
   billiard-db:
-    image: postgres:11.4-alpine
+    image: postgres:17.2-alpine
     env_file:
       - ./docker/database/.env
     ports:

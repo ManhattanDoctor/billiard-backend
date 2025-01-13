@@ -140,7 +140,7 @@ export class DatabaseService extends LoggerWrapper {
         let account = PaymentAccountId.PR_00;
         let query = PaymentTransactionEntity
             .createQueryBuilder('transaction')
-            .select(`SUM(CASE WHEN debet='${account}' THEN amount WHEN credit='${account}' THEN -amount ELSE 0 END)`, 'balance')
+            .select(`SUM(CASE WHEN debit='${account}' THEN amount WHEN credit='${account}' THEN -amount ELSE 0 END)`, 'balance')
             .where(`transaction.coinId = :coinId`, { coinId })
             .andWhere(`transaction.userId = :userId`, { userId })
             .andWhere(`transaction.activated IS NOT NULL`)

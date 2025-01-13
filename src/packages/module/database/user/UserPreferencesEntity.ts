@@ -1,5 +1,6 @@
 import {
     UserPreferences,
+    USER_PREFERENCES_VK_PATTERN,
     USER_PREFERENCES_NAME_MIN_LENGTH,
     USER_PREFERENCES_NAME_MAX_LENGTH,
     USER_PREFERENCES_DESCRIPTION_MAX_LENGTH,
@@ -8,12 +9,12 @@ import {
     USER_PREFERENCES_PICTURE_MAX_LENGTH,
     USER_PREFERENCES_LOCATION_MAX_LENGTH,
     USER_PREFERENCES_SOCIAL_MAX_LENGTH,
-    USER_PREFERENCES_VK_PATTERN,
     USER_PREFERENCES_FACEBOOK_PATTERN,
     USER_PREFERENCES_TELEGRAM_PATTERN,
     USER_PREFERENCES_INSTAGRAM_PATTERN,
     USER_PREFERENCES_NICKNAME_MIN_LENGTH,
     USER_PREFERENCES_NICKNAME_MAX_LENGTH,
+    USER_PREFERENCES_NICKNAME_REGEXP,
 } from '@project/common/user';
 import { ObjectUtil } from '@ts-core/common';
 import { TypeormDecimalTransformer, TypeormValidableEntity } from '@ts-core/backend';
@@ -21,8 +22,8 @@ import { Exclude, Type, Expose } from 'class-transformer';
 import { IsEmail, IsDate, Length, Matches, IsUrl, IsBoolean, MaxLength, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from './UserEntity';
-import * as _ from 'lodash';
 import { TRANSFORM_PRIVATE } from '@project/module/core';
+import * as _ from 'lodash';
 
 @Entity({ name: 'user_preferences' })
 export class UserPreferencesEntity extends TypeormValidableEntity implements UserPreferences {
@@ -60,6 +61,7 @@ export class UserPreferencesEntity extends TypeormValidableEntity implements Use
 
     @Column()
     @IsString()
+    @Matches(USER_PREFERENCES_NICKNAME_REGEXP)
     @Length(USER_PREFERENCES_NICKNAME_MIN_LENGTH, USER_PREFERENCES_NICKNAME_MAX_LENGTH)
     public nickname: string;
 

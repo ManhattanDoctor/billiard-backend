@@ -38,7 +38,7 @@ export class AddPayment1627121260008 implements MigrationInterface {
                     constraint "payment_transaction_payment_id_fkey" references "payment" on delete cascade,
 
                 "type" varchar not null,
-                "debet" varchar not null,
+                "debit" varchar not null,
                 "credit" varchar not null,
                 "amount" numeric not null,
                 "coin_id" varchar not null,

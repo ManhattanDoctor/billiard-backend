@@ -30,21 +30,21 @@ export class PaymentTransactionEntity extends TypeormValidableEntity implements 
 
         switch (type) {
             case PaymentTransactionType.CORRECTION:
-                item.debet = MathUtil.lessThan(amount, '0') ? PaymentAccountId.CO_00 : PaymentAccountId.PR_00;
+                item.debit = MathUtil.lessThan(amount, '0') ? PaymentAccountId.CO_00 : PaymentAccountId.PR_00;
                 item.credit = MathUtil.lessThan(amount, '0') ? PaymentAccountId.PR_00 : PaymentAccountId.CO_00;
                 item.amount = MathUtil.abs(amount);
                 break;
 
             case PaymentTransactionType.REFUND:
             case PaymentTransactionType.PURCHASE:
-                item.debet = PaymentAccountId.PR_00;
+                item.debit = PaymentAccountId.PR_00;
                 item.credit = PaymentAccountId.CO_00;
                 break;
 
             /*
             case PaymentTransactionType.TAROT_SPREAD_MEANING_PURCHASE:
             case PaymentTransactionType.TAROT_SPREAD_MEANING_AI_PURCHASE:
-                item.debet = PaymentAccountId.CO_00;
+                item.debit = PaymentAccountId.CO_00;
                 item.credit = PaymentAccountId.PR_00;
                 break;
             */
@@ -74,7 +74,7 @@ export class PaymentTransactionEntity extends TypeormValidableEntity implements 
 
     @Column({ type: 'varchar' })
     @IsEnum(PaymentAccountId)
-    public debet: PaymentAccountId;
+    public debit: PaymentAccountId;
 
     @Column({ type: 'varchar' })
     @IsEnum(PaymentAccountId)

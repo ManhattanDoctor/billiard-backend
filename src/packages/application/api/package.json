@@ -8,6 +8,7 @@
         "start:dev": "ts-node-dev --preserve-symlinks --transpile-only --ignore-watch node_modules main.ts",
         "build": "tsc",
         "typeorm": "typeorm-ts-node-esm",
+        "migration:run1": "npx typeorm-ts-node-esm migration:run -d ormconfig.migration.ts",
         "migration:run": "npm run typeorm migration:run -- -d ormconfig.migration.ts",
         "schema:drop": "npm run typeorm schema:drop -- -d ormconfig.migration.ts",
         "seed:run": "npm run typeorm migration:run -- -d ormconfig.seed.ts",

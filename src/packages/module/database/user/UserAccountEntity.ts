@@ -15,9 +15,9 @@ export class UserAccountEntity extends TypeormValidableEntity implements UserAcc
     //
     // --------------------------------------------------------------------------
 
-    public static createEntity(): UserAccountEntity {
+    public static createEntity(type: UserAccountType): UserAccountEntity {
         let item = new UserAccountEntity();
-        item.type = UserAccountType.FREE;
+        item.type = type;
         return item;
     }
 
@@ -46,7 +46,7 @@ export class UserAccountEntity extends TypeormValidableEntity implements UserAcc
     @IsOptional()
     @IsBoolean()
     public isDisableCommentAdd?: boolean;
-    
+
     @Exclude()
     @Column({ name: 'user_id' })
     public userId: number;

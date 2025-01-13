@@ -4,15 +4,15 @@ import { TypeormValidableEntity } from '@ts-core/backend';
 import { Exclude, Expose, ClassTransformOptions, Type } from 'class-transformer';
 import { ValidateNested, IsDate, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { TransformGroup } from '../TransformGroup';
 import { UserAccountEntity } from './UserAccountEntity';
 import { UserPreferencesEntity } from './UserPreferencesEntity';
 import { TransformUtil } from '@ts-core/common';
-import * as _ from 'lodash';
 import { UserStatisticsEntity } from './UserStatisticsEntity';
 import { CoinAccountEntity } from '../coin';
 import { PaymentEntity, PaymentTransactionEntity } from '../payment';
 import { TRANSFORM_PRIVATE } from '@project/module/core';
+import { GamePartnerEntity, GamePatternEntity, GameSessionEntity } from '../game';
+import * as _ from 'lodash';
 
 @Entity({ name: 'user' })
 export class UserEntity extends TypeormValidableEntity implements User {
@@ -77,6 +77,21 @@ export class UserEntity extends TypeormValidableEntity implements User {
     @OneToMany(() => PaymentTransactionEntity, item => item.user)
     @Type(() => PaymentTransactionEntity)
     public paymentTransactions?: Array<PaymentTransactionEntity>;
+
+    @Exclude()
+    @OneToMany(() => GamePartnerEntity, item => item.user)
+    @Type(() => GamePartnerEntity)
+    public gamePartners?: Array<GamePartnerEntity>;
+
+    @Exclude()
+    @OneToMany(() => GamePatternEntity, item => item.user)
+    @Type(() => GamePatternEntity)
+    public gamePatterns?: Array<GamePatternEntity>;
+
+    @Exclude()
+    @OneToMany(() => GameSessionEntity, item => item.user)
+    @Type(() => GameSessionEntity)
+    public gameSessions?: Array<GameSessionEntity>;
 
     // --------------------------------------------------------------------------
     //

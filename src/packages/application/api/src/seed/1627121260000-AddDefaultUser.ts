@@ -23,7 +23,6 @@ export class AddDefaultUser1627121260000 implements MigrationInterface {
     // --------------------------------------------------------------------------
 
     public async up(queryRunner: QueryRunner): Promise<any> {
-        console.log(123, queryRunner);
         let repository = queryRunner.connection.getRepository(UserEntity);
         let login = AddDefaultUser1627121260000.getLogin();
 
@@ -35,22 +34,11 @@ export class AddDefaultUser1627121260000 implements MigrationInterface {
         item = new UserEntity();
         item.login = login;
         item.status = UserStatus.ACTIVE;
+        item.account = UserAccountEntity.createEntity(UserAccountType.ADMINISTRATOR);
         item.resource = UserResource.GOOGLE;
         item.lastLogin = new Date();
+        item.preferences = UserPreferencesEntity.createEntity({ name: 'Anter Athanor', nickname: 'anter.athanor' });
 
-        let account = (item.account = new UserAccountEntity());
-        account.type = UserAccountType.ADMINISTRATOR;
-
-        let preferences = (item.preferences = new UserPreferencesEntity());
-        preferences.name = 'Anter Athanor';
-        preferences.email = 'anter.athanor@gmail.com';
-        preferences.locale = 'ru';
-        preferences.isMale = true;
-        preferences.nickname = 'anter.athanor';
-        preferences.picture = 'https://lh3.googleusercontent.com/a-/AOh14Gi3OO8vUAOm95cVHW-JOIzidhXd8ywkxtXm3f6r=s96-c';
-        preferences.description = 'Administrator';
-
-        ValidateUtil.validate(item);
         await repository.save(item);
     }
 

@@ -43,7 +43,10 @@ export class AddUser1627121260000 implements MigrationInterface {
                     constraint "user_preferences_user_id_fkey" references "user" on delete cascade,
 
                 "name" varchar not null,
-                "nickname" varchar not null constraint "user_preferences_nickname_key" unique,
+                
+                "nickname" varchar not null 
+                    constraint "user_preferences_nickname_key" unique,
+
                 "phone" varchar,
                 "email" varchar,
                 "locale" varchar,
